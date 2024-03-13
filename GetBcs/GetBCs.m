@@ -12,11 +12,13 @@ nodes=length(meshdata.vertex(1,:));%number of vertex
 nele=length(meshdata.elem{1,2}(1,:));%number of element
 vertex=meshdata.vertex';
 element=meshdata.elem{1,2}';
-
+ver_size=size(vertex,2);
+ele_size=size(element,2);
+ph = 'D:\aiwanzhe'; % The path of the output data
 %% output the vertex file
-fid = fopen('D:\aiwanzhe\vertex.txt','wt');
+fid = fopen(strcat(ph,'\','vertex.txt'),'wt');
 for i = 1:nodes
-    for j = 1:3
+    for j = 1:ver_size
         fprintf(fid,'%f\t',vertex(i,j));
     end
     if i~=nodes
@@ -24,9 +26,9 @@ for i = 1:nodes
     end
 end
 %% output the element file
-fid = fopen('D:\aiwanzhe\element.txt','wt');
+fid = fopen(strcat(ph,'\','element.txt'),'wt'); 
 for i = 1:nele
-    for j = 1:8
+    for j = 1:ele_size
         fprintf(fid,'%d\t',element(i,j));
     end
     if i~=nele
@@ -52,7 +54,7 @@ end
 
 fixed_size=size(fixedDof,2);
 %output
-fid = fopen('D:\aiwanzhe\fixeddofs.txt','wt'); 
+fid = fopen(strcat(ph,'\','fixeddofs.txt'),'wt');
 for i = 1:fixed_size
         fprintf(fid,'%d\n',fixedDof(1,i));
 end
@@ -69,15 +71,19 @@ end
 
 load_size=size(Dof_load,2);
 %output
-fid = fopen('D:\aiwanzhe\loaddof_1.txt','wt'); 
+fid = fopen(strcat(ph,'\','loaddof.txt'),'wt'); 
 for i = 1:load_size
         fprintf(fid,'%d\t',Dof_load(1,i));
 end
 
-load=ones(1,size(load_nodes,1));%set the load to 1
+load=ones(1,size(load_nodes,1));%set the load to be 1
 %output
-fid = fopen('D:\aiwanzhe\load_1.txt','wt'); 
+fid = fopen(strcat(ph,'\','load.txt'),'wt'); 
 for i = 1:load_size
+        fprintf(fid,'%f\t',load(1,i));
+end
+ 
+fclose(fid);
         fprintf(fid,'%f\t',load(1,i));
 end
  
