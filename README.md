@@ -3,7 +3,7 @@ The code is a parallel 3D topology optimization framework on PETSc based on unst
 The code default supports the diagonally numbered eight-node hexahedral element, and extends to four-node tetrahedral element is provided in folder "tet4".
 
 The code had been tested on:
--Linux system: deepin 20 Beta
+-Linux system: deepin 20.9
 
 The code requires:
 -PETSc (tested version: 3.16.4)
