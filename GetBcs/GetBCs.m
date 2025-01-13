@@ -70,6 +70,7 @@ for i=1:size(load_nodes,1)
 end
 
 load_size=size(Dof_load,2);
+
 %output
 fid = fopen(strcat(ph,'\','loaddof.txt'),'wt'); 
 for i = 1:load_size
